@@ -112,6 +112,13 @@ namespace SqlChecker
 
             // Verifica a aspas príncipal da sintaxe
             char primaryQuote = sql[openParenthesisAfterValuesIndex + 1];
+            string anyTextBetweenQuote = "(" + primaryQuote + ".*";
+
+            // Se não houver aspas no comando, remova a opção
+            if (!primaryQuote.Equals("'") || !primaryQuote.Equals("\""))
+            {
+                anyTextBetweenQuote = "[\\w.]+)";
+            }
 
             // Adicione a quantidade de valores esperados de acordo com a quantidade de colunas
             for (int i = 0; i < numOfCols; i++)
@@ -130,13 +137,9 @@ namespace SqlChecker
             string semiColon = syntaxRules["hasSemicolon"] ? ";" : "";
             patternList.Add("\\)" + semiColon);
             
-
+            // Transforma o Regex final e compara
             string finalPattern = string.Join("", patternList);
             Match match = Regex.Match(sql, finalPattern);
-
-            Console.WriteLine(sql);
-            Console.WriteLine("->" + finalPattern);
-
 
             return match.Success;
         }
