@@ -33,7 +33,7 @@ namespace SqlChecker
                 default:
                     result = false;
                     // Exibe mensagem de erro para comandos inválidos
-                    Console.WriteLine($"Command '{command}' is not a DML command.");
+                    Console.WriteLine($"\"{command}\" is not recognized as a DML command.");
                     break;
             }
 
@@ -64,17 +64,18 @@ namespace SqlChecker
             // { "INSERT", 1 OU MAIS ESPAÇOS, "INTO", 1 OU MAIS ESPAÇOS, NOME ALFANUMÉRICO, 0 OU MAIS ESPAÇOS }
             List<string> patternList = new List<string> { "INSERT", "\\s+", "INTO", "\\s+", "\\w+", "\\s*" };
 
-            // Se tiver os nomes das colunas
             int numOfCols = 0;
-            int secondOpenParenthesisIndex = 0;
+            int openParenthesisAfterValuesIndex = sql.IndexOf("(");
+
+            // Se tiver os nomes das colunas
             if (syntaxRules["hasColumnName"])
             {
                 // Posições dos parenteses
                 int firstOpenParenthesisIndex = sql.IndexOf("(");
                 int firstCloseParenthesisIndex = sql.IndexOf(")");
-                secondOpenParenthesisIndex = sql.IndexOf('(', firstOpenParenthesisIndex + 1);
+                openParenthesisAfterValuesIndex = sql.IndexOf('(', firstOpenParenthesisIndex + 1);
 
-                // Remove apenas os nomes das colunas e conta quantas colunas existem
+                // Coleta apenas os nomes das colunas e conta quantas colunas existem
                 string columnNames = sql.Substring(firstOpenParenthesisIndex + 1, firstCloseParenthesisIndex - firstOpenParenthesisIndex - 1);
                 numOfCols = columnNames.Split(",").Length;
 
@@ -98,25 +99,38 @@ namespace SqlChecker
                 patternList.Add("\\)\\s*");
             }
 
-            // Adicione no pattern: "VALUES", espaço opcional e abertura de parênteses
-            patternList.Add("VALUES\\s*\\(");
+            // Adicione no pattern: "VALUES", espaço opcional, abertura de parênteses e espaço opcional
+            patternList.Add("VALUES\\s*\\(*\\s*");
 
-            //
-            if (syntaxRules["hasColumnName"])
+            // Verifica a aspas príncipal da sintaxe
+            char primaryQuote = sql[openParenthesisAfterValuesIndex + 1];
+
+            // Adicione a quantidade de valores esperados de acordo com a quantidade de colunas
+            for (int i = 0; i < numOfCols; i++)
             {
-                int secondParenthesisIndex = input.IndexOf('(', firstParenthesisIndex + 1);
+                // Adicione um nome de coluna alfanumérico e espaços adicionais
+                patternList.Add("(" + primaryQuote + ".*" + primaryQuote + "|[\\w.]+)");
+
+                // Adicione vírgula e espaços adicionais se houver mais colunas a frente
+                if (i != numOfCols - 1)
+                {
+                    patternList.Add(",\\s*");
+                }
             }
 
-
-
-
+            // Fecha os parênteses de valores e ponto e vírgula
+            string semiColon = syntaxRules["hasSemicolon"] ? ";" : "";
+            patternList.Add("\\)" + semiColon);
+            
 
             string finalPattern = string.Join("", patternList);
+            Match match = Regex.Match(sql, finalPattern);
 
+            Console.WriteLine(sql);
             Console.WriteLine("->" + finalPattern);
 
 
-            return true;
+            return match.Success;
         }
     }
 }
