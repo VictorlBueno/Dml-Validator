@@ -64,15 +64,16 @@ namespace SqlChecker
             // { "INSERT", 1 OU MAIS ESPAÇOS, "INTO", 1 OU MAIS ESPAÇOS, NOME ALFANUMÉRICO, 0 OU MAIS ESPAÇOS }
             List<string> patternList = new List<string> { "INSERT", "\\s+", "INTO", "\\s+", "\\w+", "\\s*" };
 
+            // Posições dos parenteses
             int numOfCols = 0;
             int openParenthesisAfterValuesIndex = sql.IndexOf("(");
+            int firstOpenParenthesisIndex = sql.IndexOf("(");
+            int firstCloseParenthesisIndex = sql.IndexOf(")");
 
             // Se tiver os nomes das colunas
             if (syntaxRules["hasColumnName"])
             {
-                // Posições dos parenteses
-                int firstOpenParenthesisIndex = sql.IndexOf("(");
-                int firstCloseParenthesisIndex = sql.IndexOf(")");
+                
                 openParenthesisAfterValuesIndex = sql.IndexOf('(', firstOpenParenthesisIndex + 1);
 
                 // Coleta apenas os nomes das colunas e conta quantas colunas existem
@@ -97,6 +98,13 @@ namespace SqlChecker
 
                 // Adicione no pattern: parênteses de fechamento e espaço opcional
                 patternList.Add("\\)\\s*");
+
+            // Se não tiver os nomes das colunas, contar a quantidade de valores
+            } else
+            {
+                // Coleta apenas os nomes das colunas e conta quantas colunas existem
+                string columnNames = sql.Substring(firstOpenParenthesisIndex + 1, firstCloseParenthesisIndex - firstOpenParenthesisIndex - 1);
+                numOfCols = columnNames.Split(",").Length;
             }
 
             // Adicione no pattern: "VALUES", espaço opcional, abertura de parênteses e espaço opcional
