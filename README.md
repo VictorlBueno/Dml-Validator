@@ -96,7 +96,7 @@ CheckDml.IsDeleteValid("DELETE FROM user WHERE id = 1; DROP TABLE products;") //
 <p>This function is under development</p>
 <br>
 
-## Mass validation
+## Mass Validation
 <p>At the end of this project, this code will be implemented in an interface created with Windows Forms for mass validation of SQL commands saved in <code>.xls</code> or <code>.txt</code>.</p>
 
 #
