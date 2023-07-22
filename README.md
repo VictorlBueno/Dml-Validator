@@ -4,7 +4,7 @@
 <p>The library provides functions to validate INSERT, DELETE, and UPDATE statements. When calling these functions and passing the Data Manipulation Language (DML) code as a parameter, each method will return true if the DML command is valid and false if it is not.
   
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#dml-validator-">What is DML Validator?</a></li>
-<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#dml-validator-">How it Works?</a></li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#how-it-works">How it Works?</a></li>
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#syntax-validation">Syntax Validation</a></li>
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#handling-nullundefinedna-contents">Handling Null, Undefined and #N/A Contents</a></li>
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#matching-number-of-columnsvalues">Matching Number of Columns/Values</a></li>
