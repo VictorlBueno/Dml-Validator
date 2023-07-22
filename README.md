@@ -9,6 +9,8 @@
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#matching-number-of-columnsvalues">Matching Number of Columns/Values</a></li>
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#auto-identification-of-quotes">Auto Identification of Quotes</a></li>
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#sql-injection-prevention">SQL Injection Prevention</a></li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#sql-injection-prevention">DDL Validator</a></li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#sql-injection-prevention">Mass validation</a></li>
 <br>
 
 For example, you can use the library to validate SQL queries before executing them in a database. If the DML code is well-formed and follows the syntax rules for the corresponding DML operation, the library will return true, indicating that the statement is valid and can be safely executed. On the other hand, if the DML code contains errors or doesn't adhere to the expected syntax, the library will return false, allowing you to handle the invalid statement appropriately in your application.</p>
@@ -20,33 +22,33 @@ For example, you can use the library to validate SQL queries before executing th
 <p>For an automatic detection of the dml command and validate it:</p>
 
 ```CSharp
-CheckDml.IsValid("INSERT INTO user (name, email) VALUES ('Victor', 'victor@example.com');") 
-CheckDml.IsValid("DELETE FROM user WHERE id = 1;")
-CheckDml.IsValid("UPDATE user SET email = 'victorlb@example.com' WHERE id = 1;") 
+CheckDml.IsValid("INSERT INTO user (name, email) VALUES ('Victor', 'victor@example.com');") // true
+CheckDml.IsValid("DELETE FROM user WHERE id = 1;") // true
+CheckDml.IsValid("UPDATE user SET email = 'victorlb@example.com' WHERE id = 1;") // true
 ```
 <p>You can also restrict validation to just a specific command:</p>
 
 ```CSharp
-CheckDml.IsInsertValid("INSERT INTO user (name, email) VALUES ('Victor', 'victor@example.com');") 
-CheckDml.IsDeleteValid("DELETE FROM user WHERE id = 1;")
-CheckDml.IsUpdateValid("UPDATE user SET email = 'victorlb@example.com' WHERE id = 1;") 
+CheckDml.IsInsertValid("INSERT INTO user (name, email) VALUES ('Victor', 'victor@example.com');") // true 
+CheckDml.IsDeleteValid("DELETE FROM user WHERE id = 1;") // true
+CheckDml.IsUpdateValid("UPDATE user SET email = 'victorlb@example.com' WHERE id = 1;") // true
 ```
 <p>Examples of syntax that will return false:</p>
 
 ```SQL
-INERT INTO products (name, price) VALUES ('Hat', 100.00);
-INSERT INT products (name, price) VALUES ('Coat', 165.99);
-INSERT INTO pr@ducts (name, pri#ce) VALUES ('Legs', 120.00);
-INSERT INTO products ('name', price) VALUES ('Boots', 230,00);
+INERT INTO products (name, price) VALUES ('Hat', 100.00); # false
+INSERT INT products (name, price) VALUES ('Coat', 165.99); # false
+INSERT INTO pr@ducts (name, pri%ce) VALUES ('Legs', 120.00); # false
+INSERT INTO products ('name', price) VALUES ('Boots', 230,00); # false
 ```
 
 <p>Examples of syntax that will return true:</p>
 
 ```SQL
-INSERT INTO products (name, price) VALUES ('Hood', 230.00);
-INSERT INTO products(name, price)VALUES('Socks', 99)
-INSERT INTO products(name, price)VALUES('Socks', 99)
-INSERT INTO products VALUES('Socks', 99)
+INSERT INTO products (name, price) VALUES ('Hood', 230.00); # true
+INSERT INTO products(name, price)VALUES('Socks', 99) # true
+INSERT INTO products(name, price)VALUES('Socks', 99) # true
+INSERT INTO products VALUES('Socks', 99) # true
 ```
 <br>
 
@@ -88,6 +90,14 @@ INSERT INTO products VALUES ('Hat', 49.99, 'Totally "unbeatable" comfort') // tr
 CheckDml.IsValid("INSERT INTO products(name, price)VALUES('Socks', 99); DROP TABLE products;") // false
 CheckDml.IsDeleteValid("DELETE FROM user WHERE id = 1; DROP TABLE products;") // false
 ```
+<br>
+
+## DDL Validator
+<p>This code is under development</p>
+<br>
+
+## Auto Identification of Quotes
+<p>At the end of this project, this code will be implemented in an interface created with Windows Forms for mass validation of SQL commands saved in <code>.xls</code> or <code>.txt</code>.</p>
 
 #
 <h6>Links&ensp;&ensp;&ensp;&ensp;
