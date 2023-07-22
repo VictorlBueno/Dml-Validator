@@ -42,6 +42,12 @@ And throughout the code, it identifies the remaining necessary patterns and adds
 // Add an alphanumeric column name and additional spaces
 patternList.Add("\\w+\\s*");
 ```
+Finally, it turns it into a string and compares it using
+
+```CSharp
+string finalPattern = string.Join("", patternList);
+Match match = Regex.Match(insertCommand, finalPattern);
+```
 <br>
 
 ## Syntax Validation
