@@ -1,6 +1,8 @@
 <h6>❗This code is under development | Only the insert check is ready to use. </h6>
 
-<h3>DML Validator ☕</h3>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#dml-validator-">What is DML Validator?</li>
+
+## DML Validator ☕
 <p>The library provides functions to validate INSERT, DELETE, and UPDATE statements. When calling these functions and passing the Data Manipulation Language (DML) code as a parameter, each method will return true if the DML command is valid and false if it is not.
 
 For example, you can use the library to validate SQL queries before executing them in a database. If the DML code is well-formed and follows the syntax rules for the corresponding DML operation, the library will return true, indicating that the statement is valid and can be safely executed. On the other hand, if the DML code contains errors or doesn't adhere to the expected syntax, the library will return false, allowing you to handle the invalid statement appropriately in your application.</p>
