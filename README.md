@@ -4,6 +4,7 @@
 <p>The library provides functions to validate INSERT, DELETE, and UPDATE statements. When calling these functions and passing the Data Manipulation Language (DML) code as a parameter, each method will return true if the DML command is valid and false if it is not.
   
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#dml-validator-">What is DML Validator?</a></li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#dml-validator-">How it Works?</a></li>
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#syntax-validation">Syntax Validation</a></li>
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#handling-nullundefinedna-contents">Handling Null, Undefined and #N/A Contents</a></li>
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#matching-number-of-columnsvalues">Matching Number of Columns/Values</a></li>
@@ -14,6 +15,33 @@
 <br>
 
 For example, you can use the library to validate SQL queries before executing them in a database. If the DML code is well-formed and follows the syntax rules for the corresponding DML operation, the library will return true, indicating that the statement is valid and can be safely executed. On the other hand, if the DML code contains errors or doesn't adhere to the expected syntax, the library will return false, allowing you to handle the invalid statement appropriately in your application.</p>
+<br>
+
+## How it works
+<p>
+The function receives a command and identifies which command it corresponds to: INSERT, UPDATE, or DELETE, and points to the responsible function.
+
+Then, it performs some analyses to identify the used DML pattern, such as whether column names exist or only values, the number of columns present, and whether there is a semicolon at the end. It saves this information in an object.
+
+```CSharp
+{ "hasColumnName", (sqlAsList[2].Contains("(") || sqlAsList[3].Contains("(")) },
+{ "hasSemicolon", insertCommand[insertCommand.Length-1].ToString().Equals(";") },
+...
+```
+
+After identifying these characteristics, it constructs a list with parts of a regex
+
+```CSharp
+// { "INSERT", 1 OR MORE SPACES, "INTO", 1 OR MORE SPACES, ALPHANUMERIC NAME, 0 OR MORE SPACES }
+List<string> patternList = new List<string> { "INSERT", "\\s+", "INTO", "\\s+", "\\w+", "\\s*" };
+```
+And throughout the code, it identifies the remaining necessary patterns and adds them to this list in the expected order.</p>
+
+```CSharp
+...
+// Add an alphanumeric column name and additional spaces
+patternList.Add("\\w+\\s*");
+```
 <br>
 
 ## Syntax Validation
