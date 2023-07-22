@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckSql", "CheckSql\CheckSql.csproj", "{CE2A87E1-E639-4653-B5E7-7165CBEC67BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlChecker", "CheckSql\SqlChecker.csproj", "{CE2A87E1-E639-4653-B5E7-7165CBEC67BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckSqlTeste", "CheckSqlTeste\CheckSqlTeste.csproj", "{1F59A86D-50DE-4733-B72B-1E1A64E9E9DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckSqlTeste", "CheckSqlTeste\CheckSqlTeste.csproj", "{1F59A86D-50DE-4733-B72B-1E1A64E9E9DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

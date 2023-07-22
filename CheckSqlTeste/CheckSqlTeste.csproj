@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CheckSql\CheckSql.csproj" />
+    <ProjectReference Include="..\CheckSql\SqlChecker.csproj" />
   </ItemGroup>
 
 </Project>
