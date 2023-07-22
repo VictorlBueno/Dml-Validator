@@ -1,13 +1,22 @@
 <h6>❗This code is under development | Only the insert check is ready to use. </h6>
 
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#dml-validator-">What is DML Validator?</li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#syntax-validation">Syntax Validation</li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#handling-nullundefinedna-contents">Handling Null/Undefined/#N/A Contents</li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#matching-number-of-columnsvalues">Matching Number of Columns/Values</li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#auto-identification-of-quotes">Auto Identification of Quotes</li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#sql-injection-prevention">SQL Injection Prevention
+</li>
 
 ## DML Validator ☕
 <p>The library provides functions to validate INSERT, DELETE, and UPDATE statements. When calling these functions and passing the Data Manipulation Language (DML) code as a parameter, each method will return true if the DML command is valid and false if it is not.
 
 For example, you can use the library to validate SQL queries before executing them in a database. If the DML code is well-formed and follows the syntax rules for the corresponding DML operation, the library will return true, indicating that the statement is valid and can be safely executed. On the other hand, if the DML code contains errors or doesn't adhere to the expected syntax, the library will return false, allowing you to handle the invalid statement appropriately in your application.</p>
+<br>
 
 ## Syntax Validation
+<p>The library validates the syntax of INSERT, DELETE, and UPDATE statements, ensuring they follow the correct structure.</p>
+
 <p>For an automatic detection of the dml command and validate it:</p>
 
 ```CSharp
@@ -22,9 +31,7 @@ CheckDml.IsInsertValid("INSERT INTO user (name, email) VALUES ('Victor', 'victor
 CheckDml.IsDeleteValid("DELETE FROM user WHERE id = 1;")
 CheckDml.IsUpdateValid("UPDATE user SET email = 'victorlb@example.com' WHERE id = 1;") 
 ```
-
-<p>The library validates the syntax of INSERT, DELETE, and UPDATE statements, ensuring they follow the correct structure.</p>
-<p>Examples of syntax that will return false</p>
+<p>Examples of syntax that will return false:</p>
 
 ```SQL
 INERT INTO products (name, price) VALUES ('Hat', 100.00);
@@ -33,7 +40,7 @@ INSERT INTO pr@ducts (name, pri#ce) VALUES ('Legs', 120.00);
 INSERT INTO products ('name', price) VALUES ('Boots', 230,00);
 ```
 
-<p>Examples of syntax that will return true</p>
+<p>Examples of syntax that will return true:</p>
 
 ```SQL
 INSERT INTO products (name, price) VALUES ('Hood', 230.00);
@@ -41,6 +48,7 @@ INSERT INTO products(name, price)VALUES('Socks', 99)
 INSERT INTO products(name, price)VALUES('Socks', 99)
 INSERT INTO products VALUES('Socks', 99)
 ```
+<br>
 
 ## Handling Null/Undefined/#N/A Contents
 <p>The library handles null or undefined values gracefully, preventing potential errors when processing the DML code.</p>
@@ -51,6 +59,7 @@ CheckDml.IsValid("INSERT INTO products VALUES ('Hat', 100.00)", "null") // true
 CheckDml.IsInsertValid("INSERT INTO products VALUES (undefined, 100.00)", "null") // false
 CheckDml.IsInsertValid("INSERT INTO products VALUES (undefined, 100.00)", "null", "undefined", "#N/A") // false
 ```
+<br>
 
 ## Matching Number of Columns/Values
 <p>The library ensures that the number of columns matches the number of values in an INSERT statement, avoiding inconsistencies and errors.</p>
@@ -60,6 +69,7 @@ INSERT INTO products (name, price) VALUES ('Hood'); # false
 INSERT INTO products (name, price, size) VALUES ('Socks', 99); # false
 INSERT INTO products VALUES ('Socks', 99); # true
 ```
+<br>
 
 ## Auto Identification of Quotes
 <p>The library automatically detects the use of double or single quotes, adapting its validation accordingly to support both types of strings.</p>
@@ -69,6 +79,7 @@ INSERT INTO products VALUES ('Hat', 49.99) // true
 INSERT INTO products VALUES ('Hat', 49.99, "blue") // false
 INSERT INTO products VALUES ('Hat', 49.99, 'Totally "unbeatable" comfort') // true
 ```
+<br>
 
 ## SQL Injection Prevention
 <p>The library safeguards against SQL injection attacks, offering robust security measures to protect your database from malicious input.</p>
