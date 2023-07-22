@@ -9,7 +9,7 @@
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#matching-number-of-columnsvalues">Matching Number of Columns/Values</a></li>
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#auto-identification-of-quotes">Auto Identification of Quotes</a></li>
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#sql-injection-prevention">SQL Injection Prevention</a></li>
-<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#sql-injection-prevention">DDL Validator</a></li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#ddl-validator">DDL Validator</a></li>
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#sql-injection-prevention">Mass validation</a></li>
 <br>
 
@@ -93,10 +93,10 @@ CheckDml.IsDeleteValid("DELETE FROM user WHERE id = 1; DROP TABLE products;") //
 <br>
 
 ## DDL Validator
-<p>This code is under development</p>
+<p>This function is under development</p>
 <br>
 
-## Auto Identification of Quotes
+## Mass validation
 <p>At the end of this project, this code will be implemented in an interface created with Windows Forms for mass validation of SQL commands saved in <code>.xls</code> or <code>.txt</code>.</p>
 
 #
