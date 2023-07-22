@@ -1,15 +1,15 @@
 <h6>❗This code is under development | Only the insert check is ready to use. </h6>
 
-<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#dml-validator-">What is DML Validator?</li>
-<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#syntax-validation">Syntax Validation</li>
-<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#handling-nullundefinedna-contents">Handling Null/Undefined/#N/A Contents</li>
-<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#matching-number-of-columnsvalues">Matching Number of Columns/Values</li>
-<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#auto-identification-of-quotes">Auto Identification of Quotes</li>
-<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#sql-injection-prevention">SQL Injection Prevention
-</li>
-
 ## DML Validator ☕
 <p>The library provides functions to validate INSERT, DELETE, and UPDATE statements. When calling these functions and passing the Data Manipulation Language (DML) code as a parameter, each method will return true if the DML command is valid and false if it is not.
+  
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#dml-validator-">What is DML Validator?</a></li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#syntax-validation">Syntax Validation</a></li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#handling-nullundefinedna-contents">Handling Null, Undefined and #N/A Contents</a></li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#matching-number-of-columnsvalues">Matching Number of Columns/Values</a></li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#auto-identification-of-quotes">Auto Identification of Quotes</a></li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#sql-injection-prevention">SQL Injection Prevention</a></li>
+<br>
 
 For example, you can use the library to validate SQL queries before executing them in a database. If the DML code is well-formed and follows the syntax rules for the corresponding DML operation, the library will return true, indicating that the statement is valid and can be safely executed. On the other hand, if the DML code contains errors or doesn't adhere to the expected syntax, the library will return false, allowing you to handle the invalid statement appropriately in your application.</p>
 <br>
@@ -50,7 +50,7 @@ INSERT INTO products VALUES('Socks', 99)
 ```
 <br>
 
-## Handling Null/Undefined/#N/A Contents
+## Handling Null, Undefined and #N/A Contents
 <p>The library handles null or undefined values gracefully, preventing potential errors when processing the DML code.</p>
 
 ```CSharp
