@@ -10,7 +10,7 @@
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#auto-identification-of-quotes">Auto Identification of Quotes</a></li>
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#sql-injection-prevention">SQL Injection Prevention</a></li>
 <li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#ddl-validator">DDL Validator</a></li>
-<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#sql-injection-prevention">Mass validation</a></li>
+<li><a href="https://github.com/VictorlBueno/Check-Sql/tree/main#mass-validation">Mass validation</a></li>
 <br>
 
 For example, you can use the library to validate SQL queries before executing them in a database. If the DML code is well-formed and follows the syntax rules for the corresponding DML operation, the library will return true, indicating that the statement is valid and can be safely executed. On the other hand, if the DML code contains errors or doesn't adhere to the expected syntax, the library will return false, allowing you to handle the invalid statement appropriately in your application.</p>
