@@ -26,7 +26,6 @@ Then, it performs some analyses to identify the used DML pattern, such as whethe
 ```CSharp
 { "hasColumnName", (sqlAsList[2].Contains("(") || sqlAsList[3].Contains("(")) },
 { "hasSemicolon", insertCommand[insertCommand.Length-1].ToString().Equals(";") },
-...
 ```
 
 After identifying these characteristics, it constructs a list with parts of a regex
